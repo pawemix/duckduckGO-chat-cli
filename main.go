@@ -253,7 +253,7 @@ func main() {
 		input, _ := reader.ReadString('\n')
 		input = strings.TrimSpace(input)
 
-		if input == "exit" {
+		if input == "exit" || input == "" {
 			color.Yellow("Exiting chat. Goodbye!")
 			break
 		}
