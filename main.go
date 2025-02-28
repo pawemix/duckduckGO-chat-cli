@@ -208,7 +208,8 @@ func InitChat(model ModelAlias) (*Chat, error) {
 func acceptTermsOfService() bool {
 	color.Yellow("Before using this application, you must accept the terms of service.")
 	color.White("Please read the terms of service at: %s", termsOfServiceURL)
-	color.Blue("Do you accept the terms of service? (yes/no): ")
+	blue := color.New(color.FgBlue)
+	blue.Print("Do you accept the terms of service? (yes/no): ")
 
 	reader := bufio.NewReader(os.Stdin)
 	for {
@@ -244,9 +245,11 @@ func main() {
 	color.Green("Chat initialized successfully. You can start chatting now.")
 	color.Yellow("Type 'exit' to end the conversation.")
 
+	blue := color.New(color.FgBlue)
+	green := color.New(color.FgGreen)
 	reader := bufio.NewReader(os.Stdin)
 	for {
-		color.Blue("You: ")
+		blue.Print("You: ")
 		input, _ := reader.ReadString('\n')
 		input = strings.TrimSpace(input)
 
@@ -261,7 +264,7 @@ func main() {
 			continue
 		}
 
-		color.Green("AI: ")
+		green.Print("AI: ")
 		printResponse(stream)
 	}
 }
@@ -274,9 +277,10 @@ func chooseModel() ModelAlias {
 	color.White("3. Llama 3.1 70B")
 	color.White("4. Mixtral 8x7B")
 
+	blue := color.New(color.FgBlue)
 	reader := bufio.NewReader(os.Stdin)
 	for {
-		color.Blue("Enter your choice (1-4): ")
+		blue.Print("Enter your choice (1-4): ")
 		choice, _ := reader.ReadString('\n')
 		choice = strings.TrimSpace(choice)
 
